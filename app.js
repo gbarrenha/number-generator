@@ -1,29 +1,29 @@
 function obterValores() {
   return {
-    quantidade: parseInt(document.getElementById(`quantidade`).value),
-    de: parseInt(document.getElementById(`de`).value),
-    ate: parseInt(document.getElementById(`ate`).value),
+    quantity: parseInt(document.getElementById(`quantity`).value),
+    from: parseInt(document.getElementById(`from`).value),
+    upTo: parseInt(document.getElementById(`upTo`).value),
   };
 }
 
 function sortear() {
-  const { quantidade, de, ate } = obterValores();
+  const { quantity, from, upTo } = obterValores();
 
   let sorteados = [];
   let numero;
 
-  for (let i = 0; i < quantidade; i++) {
-    numero = obterNumeroAleatorio(de, ate);
+  for (let i = 0; i < quantity; i++) {
+    numero = obterNumeroAleatorio(from, upTo);
 
     while (sorteados.includes(numero)) {
-      numero = obterNumeroAleatorio(de, ate);
+      numero = obterNumeroAleatorio(from, upTo);
     }
 
     sorteados.push(numero);
   }
 
   let resultado = document.getElementById(`resultado`);
-  resultado.innerHTML = `<label class="texto__paragrafo">Drawn numbers: ${sorteados}</label>`;
+  resultado.innerHTML = `<label class="text__paragraph">Drawn numbers: ${sorteados}</label>`;
   alterarStatusBotao();
 }
 
@@ -44,20 +44,20 @@ function alterarStatusBotao() {
 }
 
 function reiniciar() {
-  document.getElementById("quantidade").value = "";
-  document.getElementById("de").value = "";
-  document.getElementById("ate").value = "";
-  document.getElementById(`resultado`).innerHTML = `<label class="texto__paragrafo">Drawn numbers: none so far</label>`;
+  document.getElementById("quantity").value = "";
+  document.getElementById("from").value = "";
+  document.getElementById("upTo").value = "";
+  document.getElementById(`resultado`).innerHTML = `<label class="text__paragraph">Drawn numbers: none so far</label>`;
 
   validarValores();
   alterarStatusBotao();
 }
 
 function validarValores() {
-  const { quantidade, de, ate } = obterValores();
+  const { quantity, from, upTo } = obterValores();
   const botaoSortear = document.getElementById(`btn-sortear`);
 
-  if (quantidade && de && ate) {
+  if (quantity && from && upTo) {
     botaoSortear.disabled = false;
     botaoSortear.classList.remove(`container__botao-desabilitado`);
     botaoSortear.classList.add(`container__botao`);
@@ -68,6 +68,6 @@ function validarValores() {
   }
 }
 
-document.getElementById(`quantidade`).addEventListener(`input`, validarValores);
-document.getElementById(`de`).addEventListener(`input`, validarValores);
-document.getElementById(`ate`).addEventListener(`input`, validarValores);
+document.getElementById(`quantity`).addEventListener(`input`, validarValores);
+document.getElementById(`from`).addEventListener(`input`, validarValores);
+document.getElementById(`upTo`).addEventListener(`input`, validarValores);
