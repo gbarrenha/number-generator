@@ -1,4 +1,4 @@
-function obterValores() {
+function getValues() {
   return {
     quantity: parseInt(document.getElementById(`quantity`).value),
     from: parseInt(document.getElementById(`from`).value),
@@ -6,68 +6,68 @@ function obterValores() {
   };
 }
 
-function sortear() {
-  const { quantity, from, upTo } = obterValores();
+function toDraw() {
+  const { quantity, from, upTo } = getValues();
 
-  let sorteados = [];
-  let numero;
+  let drawn = [];
+  let number;
 
   for (let i = 0; i < quantity; i++) {
-    numero = obterNumeroAleatorio(from, upTo);
+    number = getRamdomNumber(from, upTo);
 
-    while (sorteados.includes(numero)) {
-      numero = obterNumeroAleatorio(from, upTo);
+    while (drawn.includes(number)) {
+      number = getRamdomNumber(from, upTo);
     }
 
-    sorteados.push(numero);
+    drawn.push(number);
   }
 
-  let resultado = document.getElementById(`resultado`);
-  resultado.innerHTML = `<label class="text__paragraph">Drawn numbers: ${sorteados}</label>`;
-  alterarStatusBotao();
+  let result = document.getElementById(`result`);
+  result.innerHTML = `<label class="text__paragraph">Drawn numbers: ${drawn}</label>`;
+  toggleButtonState();
 }
 
-function obterNumeroAleatorio(min, max) {
+function getRamdomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function alterarStatusBotao() {
-  let botao = document.getElementById(`btn-reiniciar`);
+function toggleButtonState() {
+  let button = document.getElementById(`btn-reset`);
 
-  if (botao.classList.contains(`container__botao-desabilitado`)) {
-    botao.classList.remove(`container__botao-desabilitado`);
-    botao.classList.add(`container__botao`);
+  if (button.classList.contains(`container__button-disabled`)) {
+    button.classList.remove(`container__button-disabled`);
+    button.classList.add(`container__button`);
   } else {
-    botao.classList.remove(`container__botao`);
-    botao.classList.add(`container__botao-desabilitado`);
+    button.classList.remove(`container__button`);
+    button.classList.add(`container__button-disabled`);
   }
 }
 
-function reiniciar() {
+function reset() {
   document.getElementById("quantity").value = "";
   document.getElementById("from").value = "";
   document.getElementById("upTo").value = "";
-  document.getElementById(`resultado`).innerHTML = `<label class="text__paragraph">Drawn numbers: none so far</label>`;
+  document.getElementById(`result`).innerHTML = `<label class="text__paragraph">Drawn numbers: none so far</label>`;
 
-  validarValores();
-  alterarStatusBotao();
+  validadeValues();
+  toggleButtonState();
 }
 
-function validarValores() {
-  const { quantity, from, upTo } = obterValores();
-  const botaoSortear = document.getElementById(`btn-sortear`);
+function validadeValues() {
+  const { quantity, from, upTo } = getValues();
+  const buttonToDraw = document.getElementById(`btn-toDraw`);
 
   if (quantity && from && upTo) {
-    botaoSortear.disabled = false;
-    botaoSortear.classList.remove(`container__botao-desabilitado`);
-    botaoSortear.classList.add(`container__botao`);
+    buttonToDraw.disabled = false;
+    buttonToDraw.classList.remove(`container__button-disabled`);
+    buttonToDraw.classList.add(`container__button`);
   } else {
-    botaoSortear.disabled = true;
-    botaoSortear.classList.remove(`container__botao`);
-    botaoSortear.classList.add(`container__botao-desabilitado`);
+    buttonToDraw.disabled = true;
+    buttonToDraw.classList.remove(`container__button`);
+    buttonToDraw.classList.add(`container__button-disabled`);
   }
 }
 
-document.getElementById(`quantity`).addEventListener(`input`, validarValores);
-document.getElementById(`from`).addEventListener(`input`, validarValores);
-document.getElementById(`upTo`).addEventListener(`input`, validarValores);
+document.getElementById(`quantity`).addEventListener(`input`, validadeValues);
+document.getElementById(`from`).addEventListener(`input`, validadeValues);
+document.getElementById(`upTo`).addEventListener(`input`, validadeValues);

@@ -83,13 +83,13 @@ body::before {
   font-family: "Inter", sans-serif;
 }
 
-.container__botoes {
+.container__buttons {
   display: flex;
   flex-direction: row;
   gap: 1em;
 }
 
-.container__botao {
+.container__button {
   border-radius: 16px;
   background: #1875e8;
   padding: 16px 24px;
@@ -100,7 +100,7 @@ body::before {
   cursor: pointer;
 }
 
-.container__botao-desabilitado {
+.container__button-disabled {
   border-radius: 16px;
   background: #6f6f70;
   padding: 16px 24px;
@@ -129,7 +129,7 @@ h1 {
   line-height: normal;
 }
 
-.container__imagem-pessoa {
+.container__person-image {
   max-width: 100%;
   height: auto;
   margin-top: 2rem;
@@ -140,7 +140,7 @@ button:disabled {
 }
 
 @media screen and (max-width: 1250px) {
-  .container__imagem-pessoa {
+  .container__person-image {
     display: none;
   }
 
