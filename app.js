@@ -21,36 +21,44 @@ function toDraw() {
 
     drawn.push(number);
   }
+  drawn.sort((a, b) => a - b);
 
   let result = document.getElementById(`result`);
-  result.innerHTML = `<label class="text__paragraph">Drawn numbers: ${drawn}</label>`;
-  toggleButtonState();
+  result.innerHTML = `<label class="text__paragraph">Drawn numbers: ${drawn.join(`, `)}.</label>`;
+
+  setButtonAfterDraw();
 }
 
 function getRamdomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function toggleButtonState() {
-  let button = document.getElementById(`btn-reset`);
+function setButtonAfterDraw() {
+  const drawBtn = document.getElementById(`btn-toDraw`);
+  const resetBtn = document.getElementById(`btn-reset`);
 
-  if (button.classList.contains(`container__button-disabled`)) {
-    button.classList.remove(`container__button-disabled`);
-    button.classList.add(`container__button`);
-  } else {
-    button.classList.remove(`container__button`);
-    button.classList.add(`container__button-disabled`);
-  }
+  drawBtn.disabled = true;
+  drawBtn.classList.remove(`container__button`);
+  drawBtn.classList.add(`container__button-disabled`);
+
+  resetBtn.disabled = false;
+  resetBtn.classList.remove(`container__button-disabled`);
+  resetBtn.classList.add(`container__button`);
 }
 
 function reset() {
   document.getElementById("quantity").value = "";
   document.getElementById("from").value = "";
   document.getElementById("upTo").value = "";
-  document.getElementById(`result`).innerHTML = `<label class="text__paragraph">Drawn numbers: none so far</label>`;
+  document.getElementById(`result`).innerHTML = `<label class="text__paragraph">Drawn numbers: none so far.</label>`;
+
+  const resetBtn = document.getElementById(`btn-reset`);
+
+  resetBtn.disabled = true;
+  resetBtn.classList.remove(`container__button`);
+  resetBtn.classList.add(`container__button-disabled`);
 
   validadeValues();
-  toggleButtonState();
 }
 
 function validadeValues() {
