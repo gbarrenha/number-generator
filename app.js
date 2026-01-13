@@ -9,6 +9,16 @@ function getValues() {
 function toDraw() {
   const { quantity, from, upTo } = getValues();
 
+  if (from >= upTo) {
+    alert(`The 'From' value must be less than the 'Up To' value. Check the values and try again.`);
+    return;
+  }
+
+  if (quantity > upTo - from + 1) {
+    alert(`The quantity of numbers to draw exceeds the available range. Please adjust the values and try again.`);
+    return;
+  }
+
   let drawn = [];
   let number;
 
