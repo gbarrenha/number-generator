@@ -24,7 +24,7 @@ function toDraw() {
   drawn.sort((a, b) => a - b);
 
   let result = document.getElementById(`result`);
-  result.innerHTML = `<label class="text__paragraph">Drawn numbers: ${drawn.join(`, `)}.</label>`;
+  result.innerHTML = `<label class="text__paragraph draw-result">Drawn numbers: ${drawn.join(`, `)}.</label>`;
 
   setButtonAfterDraw();
 }
