@@ -98,6 +98,7 @@ body::before {
   font-weight: 700;
   border: none;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .container__button-disabled {
@@ -109,6 +110,17 @@ body::before {
   font-weight: 700;
   border: none;
   cursor: not-allowed;
+}
+
+.container__button:not(:disabled):hover {
+  background: #2f8bff;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(47, 139, 255, 0.6);
+}
+
+.container__button:not(:disabled):active {
+  transform: scale(0.97);
+  box-shadow: 0 0 6px rgba(47, 139, 255, 0.9);
 }
 
 h1 {
@@ -136,8 +148,10 @@ h1 {
 }
 
 button:disabled {
+  background-color: #6f6f70;
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.7;
+  box-shadow: none;
 }
 
 @media screen and (max-width: 1250px) {
